@@ -13,6 +13,9 @@ h1 {
 .jumbotron {
 	margin: 1%;
 }
+#searchButton {
+	margin: 1%;
+}
 #infoCols {
 	align-content: center;
 	margin: 0 auto;
