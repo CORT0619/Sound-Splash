@@ -12,6 +12,8 @@ function initMap(){
 var userInput;
 var href;
 var videoid;
+var fireUrl = "https://sound-splash.firebaseio.com/";
+var dataBaseRef = new Firebase(fireUrl);
 //var youtubeSearch = "https://www.youtube.com/playlist?list=PLnhejVhDwjcwjYUVMG1KTL3Oc7rB80H38"; //url for playlists
 
 //var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q="+ userInput + "&type=video&videoCaption=closedCaption&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for playlists
@@ -55,11 +57,22 @@ $('#searchButton').on('click', function(){
 
 
 
+			// firebase 
+				dataBaseRef.push({
+					
+					name: userInput,
+
+				});
+			// firebase ^^^^^
+
 
 		});
 
 
 
 	}
-
+		// clears search input for next input
+		$('#search').val('');
+		// return false so the page doesnt refresh everytime the submit button
+		return false;
 });
