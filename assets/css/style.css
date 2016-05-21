@@ -1,0 +1,33 @@
+header {
+	background-color: #333;
+	margin: 0;
+	color: whitesmoke;
+	background: linear-gradient(to bottom, #333, #111);
+	padding: 1%;
+	text-align: center;
+}
+h1 {
+	font-size: 20px;
+	margin: 0;
+}
+.jumbotron {
+	margin: 1%;
+}
+#infoCols {
+	align-content: center;
+	margin: 0 auto;
+	text-align: center;
+}
+#superDescriptive {
+	margin-right: auto;
+	margin-left: auto;
+}
+#contentBody {
+	background-color: #333;
+	color: whitesmoke;
+	text-align: center;
+	width: 98%;
+	height: auto;
+	margin: 1%;
+	border-radius: 4px;
+}
