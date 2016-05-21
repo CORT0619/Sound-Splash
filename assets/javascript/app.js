@@ -1,6 +1,7 @@
 function initMap(){
 
-	var mapDiv = $('#');
+	var mapDiv = document.getElementById('googleMapsBox');
+
 	var map = new google.maps.Map(mapDiv, {
 
 		center: {lat: 44.540, lng: -78.546},
