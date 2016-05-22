@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>youtube practice</title>
+    <!-- jQuery api reference link -->
+    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+
+    var queryUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=Kierra+Sheard&type=video&videoCaption=closedCaption&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0'; 
+
+    $.ajax({
+    	url: queryUrl,
+    	method: 'GET'
+    }).done(function(response){
+        console.log(response);
+    });
+
+
+</script>
+
+</body>
+</html>
