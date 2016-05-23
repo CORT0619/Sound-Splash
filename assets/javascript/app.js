@@ -33,7 +33,9 @@ $('#searchButton').on('click', function(){
 
 	} else {
 
-		var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&videoEmbeddable=true&q=" + userInput + "&type=video&videoCaption=closedCaption&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
+		//var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&videoEmbeddable=true&videoSyndicated=true&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video when embedding
+
+		var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 
 		$.ajax({
 			url: youtubeSearch,
@@ -45,9 +47,9 @@ $('#searchButton').on('click', function(){
 
 			videoid = response.items[0].id.videoId;
 
-			$('#youPlayer').attr('src', 'http://www.youtube.com/embed/' +videoid + '?enablejsapi=1');
+			//$('#youPlayer').attr('src', 'http://www.youtube.com/embed/' +videoid + '?enablejsapi=1');
 
-			/*console.log(response.items[0].id.videoId);
+			console.log(response.items[0].id.videoId);
 
 			videoid = response.items[0].id.videoId;
 
@@ -55,7 +57,7 @@ $('#searchButton').on('click', function(){
 
 			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/placeholder.png\">"));
 
-			$('#youTubeBox').append(newA);*/
+			$('#youTubeBox').html(newA);
 
 
 
