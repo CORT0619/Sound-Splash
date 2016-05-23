@@ -4,14 +4,24 @@ function initMap(){
 
 	var map = new google.maps.Map(mapDiv, {
 
-		center: {lat: 44.540, lng: -78.546},
-		zoom: 8
+
+		center: {lat: 27.6648, lng: -81.5158},
+		zoom: 7
 	});
+
+	var pointer = new google.maps.Marker({
+		position: {lat: 28.7450, lng: -81.3080},
+		map: map,
+		title: "Wherever"
+	})
 }
 
 var userInput;
 var href;
 var videoid;
+var youtubeSearch;
+var eventsAPI = "https://api.bandsintown.com/artists/";
+var events = [];
 //var youtubeSearch = "https://www.youtube.com/playlist?list=PLnhejVhDwjcwjYUVMG1KTL3Oc7rB80H38"; //url for playlists
 
 //var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q="+ userInput + "&type=video&videoCaption=closedCaption&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for playlists
@@ -35,7 +45,10 @@ $('#searchButton').on('click', function(){
 
 		//var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&videoEmbeddable=true&videoSyndicated=true&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video when embedding
 
-		var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
+		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
+		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
+		console.log(eventsAPI);
+
 
 		$.ajax({
 			url: youtubeSearch,
@@ -49,8 +62,6 @@ $('#searchButton').on('click', function(){
 
 			//$('#youPlayer').attr('src', 'http://www.youtube.com/embed/' +videoid + '?enablejsapi=1');
 
-			console.log(response.items[0].id.videoId);
-
 			videoid = response.items[0].id.videoId;
 
 			href = "https://www.youtube.com/watch?v=" + videoid;
@@ -60,12 +71,34 @@ $('#searchButton').on('click', function(){
 			$('#youTubeBox').html(newA);
 
 
+		});
 
+		$.ajax({ //bandsintown api
+			url: eventsAPI,
+			method: 'GET',
+			dataType: 'jsonp'
 
+		}).done(function(retrieved){
+
+			console.log(retrieved);
+
+			var eventLon;
+			var eventLat;
+
+			for(var i=0; i < retrieved.length; i++){
+
+				eventLon = retrieved[i].venue.longitude;
+				eventLat = retrieved[i].venue.latitude;
+
+				event = {eventLon, eventLat};
+
+				events.push(event);
+
+			}
+			console.log(events);
 
 
 		});
-
 
 
 	}
