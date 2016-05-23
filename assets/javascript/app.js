@@ -4,16 +4,15 @@ function initMap(){
 
 	var map = new google.maps.Map(mapDiv, {
 
-
 		center: {lat: 27.6648, lng: -81.5158},
 		zoom: 7
 	});
 
-	var pointer = new google.maps.Marker({
+	/*var pointer = new google.maps.Marker({
 		position: {lat: 28.7450, lng: -81.3080},
 		map: map,
 		title: "Wherever"
-	})
+	});*/
 }
 
 var userInput;
@@ -85,21 +84,32 @@ $('#searchButton').on('click', function(){
 			var eventLon;
 			var eventLat;
 
+			var map = new google.maps.Map(document.getElementById('googleMapsBox'),{
+
+				center: {lat: retrieved[0].venue.latitude, lng: retrieved[0].venue.longitude},
+				zoom: 4
+			});
+
 			for(var i=0; i < retrieved.length; i++){
 
 				eventLon = retrieved[i].venue.longitude;
 				eventLat = retrieved[i].venue.latitude;
 
-				event = {eventLon, eventLat};
+				event = {eventLat, eventLon};
 
 				events.push(event);
+
+
+				var pointer = new google.maps.Marker({
+					position: {lat: eventLat, lng: eventLon},
+					map: map,
+					title: retrieved[i].venue.name
+				});
 
 			}
 			console.log(events);
 
-
 		});
-
 
 	}
 
