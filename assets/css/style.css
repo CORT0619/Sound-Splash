@@ -35,6 +35,9 @@ header {
 	margin: 1%;
 	margin-top: 3%;
 	font-family: 'Helvetica';
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAP0lEQVQYV42Q0QoAIAgDz///aMPAKKeQb26HTg0tB6zKVUhI4Bus5tMn2K4Djh7gBGXM7Uvo5riQ/BfUNwwTWfn+CgiQkAMbAAAAAElFTkSuQmCC') repeat;
+	opacity: 0.1%;
 }
 #searchButton {
 	margin: 1%;
