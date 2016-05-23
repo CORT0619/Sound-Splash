@@ -12,7 +12,7 @@ function initMap(){
 var userInput;
 var href;
 var videoid;
-var fireUrl = "https://sound-splash.firebaseio.com/";
+var fireUrl = "https://sound-splash.firebaseio.com/searches";
 var dataBaseRef = new Firebase(fireUrl);
 //var youtubeSearch = "https://www.youtube.com/playlist?list=PLnhejVhDwjcwjYUVMG1KTL3Oc7rB80H38"; //url for playlists
 
@@ -53,7 +53,8 @@ $('#searchButton').on('click', function(){
 
 			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/placeholder.png\">"));
 
-			$('#youTubeBox').append(newA);
+			// you probably want to change this to html instead of append so if the user searches multiple times, it wont populate the div with every video.
+			$('#youTubeBox').html(newA);
 
 
 
@@ -73,6 +74,36 @@ $('#searchButton').on('click', function(){
 	}
 		// clears search input for next input
 		$('#search').val('');
-		// return false so the page doesnt refresh everytime the submit button
+		// return false, so the page doesnt refresh everytime the submit button is clicked
 		return false;
 });
+
+
+
+// executes code when data base is populated with new data or when page is loaded
+// takes the 5 most recent searches (subject to change)
+dataBaseRef.limitToLast(5).on('child_added', function(dataSnap){
+	// stores the object into a variable.
+	var searchName = dataSnap.val();
+
+	console.log(searchName.name);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
