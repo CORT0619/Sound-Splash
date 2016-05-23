@@ -7,7 +7,7 @@
     src: url('../fonts/Helvetica.otf');
 }
 html, body {
-  height: 100%;
+	height: 100%;
 }
 body {
 	background-image: url('../images/light_gray_pattern_bkgd.jpg');
@@ -78,20 +78,9 @@ header {
 	border-radius: 4px;
 	float: right;
 }
-footer {
+.footer {
 	background: linear-gradient(to bottom, #72CFEC, #2A5BBC);
 	border-top: 3px solid MediumSpringGreen;
 	padding: 1%;
 	text-align: center;
-}
-.wrapper {
-  min-height: 100%;
-  margin-bottom: -142px; 
-}
-.wrapper:after {
-  content: "";
-  display: block;
-}
-.footClass, .wrapper:after {
-  height: 142px; 
 }
