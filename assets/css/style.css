@@ -35,12 +35,16 @@ header {
 	margin: 1%;
 	margin-top: 3%;
 	font-family: 'Helvetica';
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+/*	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAP0lEQVQYV42Q0QoAIAgDz///aMPAKKeQb26HTg0tB6zKVUhI4Bus5tMn2K4Djh7gBGXM7Uvo5riQ/BfUNwwTWfn+CgiQkAMbAAAAAElFTkSuQmCC') repeat;
+*/	opacity: 0.5%;
 }
 #searchButton {
 	margin: 1%;
 	padding-left: 2%;
 	padding-right: 2%;
 	color: whitesmoke;
+	font-style: italic;
 	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
 	border: 3px solid MediumSpringGreen;
 }
@@ -57,6 +61,7 @@ header {
 	height: auto;
 	margin: 1%;
 	border-radius: 4px;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
 #youTubeBox {
 	background-color: #555;
@@ -67,6 +72,7 @@ header {
 	text-align: center;
 	border-radius: 4px;
 	float: left;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
 #googleMapsBox {
 	background-color: #555;
@@ -77,6 +83,7 @@ header {
 	margin: 1%;
 	border-radius: 4px;
 	float: right;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
 h5 {
 	color: #000;
