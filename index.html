@@ -1,32 +1,50 @@
 <!doctype html>
 <html>
 	<head>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+		<!-- BootStrap CDN -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+
+		<!-- JQuery -->
+		<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+
 		<title>
 			Sound-Splash Inc.
 		</title>
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	</head>
-
 	<body>
+
 		<header>
-			<h1>SoundSplash</h1>
+			<h1 class="masthead">soundsplash</h1>
 		</header>
-		<div class="container">
+		<div class="container wrapper">
 			<div id="infoCols" class="row">
 				<div class="jumbotron">
-					<h1>Search a Genre</h1>
-					<input type="text" name="Search">
+					<h1 class="animated infinite bounce">Search an Artist</h1>
+					<input type="text" id="search" name="Search">
 					<br>
-					<button type="button" id="searchButton" class="btn btn-default">Search</button>
+					<button type="button" id="searchButton" class="btn btn-default">search</button>
 				</div>
 	  			<div id="contentBody" class="col-md-12">Content goes here!</div>
 	  			<div id="youTubeBox" class="col-md-6">Content goes here!</div>
+	  			<!--<iframe id="youPlayer" type="text/html" src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com" width="300" height="300" frameborder="5"></iframe>-->
 	  			<div id="googleMapsBox" class="col-md-6">Content goes here!</div>
 			</div>
 		</div>
+		<div class="footer navbar-fixed-bottom">
+			<img class="ssLogo" src="assets/images/SoundSplash_white.png">
+		</div>
 
-		<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+		<!-- External JavaScript file -->
+		<script src="assets/javascript/app.js"></script>
+
+		<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0&callback=initMap" async defer></script>-->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"></script>
 	</body>
 </html>

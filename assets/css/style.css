@@ -1,20 +1,60 @@
+@font-face {
+    font-family: Texta-Black;
+    src: url('../fonts/Texta-Black.otf');
+}
+@font-face {
+	font-family: Helvetica;
+    src: url('../fonts/Helvetica.otf');
+}
+html, body {
+	height: 100%;
+}
+body {
+	background-image: url('../images/light_gray_pattern_bkgd.jpg');
+	font-family: 'Helvetica';
+}
 header {
-	background-color: #2B65EC;
 	margin: 0;
-	color: whitesmoke;
-	background: linear-gradient(to bottom, #333, #111);
-	padding: 1%;
+	padding: 0.5%;
 	text-align: center;
+	color: whitesmoke;
+	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	border-bottom: 3px solid MediumSpringGreen;
 }
 h1 {
-	font-size: 50px;
-	margin: 0;
+	margin-top: 0;
+}
+.masthead {
+	font-size: 30px;
+	font-family: 'Texta-Black';
+}
+.ssLogo {
+	max-width: 80px;
+	max-height: 80px;
 }
 .jumbotron {
 	margin: 1%;
+	margin-top: 3%;
+	font-family: 'Helvetica';
+	color: DarkSlateGray;
+	background-color: aliceblue;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
+/*.jumboPattern {
+	background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPklEQVQYV2NkQAOvX7+WFBUVfY4uzogsAFOETTFcIbokOh+sEJd1yOKMuBTBnASTR3EjugeQFROlEKSBaIUAh7Um4w91sOUAAAAASUVORK5CYII=);
+}*/
 #searchButton {
 	margin: 1%;
+	padding-left: 2%;
+	padding-right: 2%;
+	color: whitesmoke;
+	font-style: italic;
+	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
+	border: 3px solid MediumSpringGreen;
+}
+#searchButton:hover {
+	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
 }
 #infoCols {
 	align-content: center;
@@ -22,31 +62,39 @@ h1 {
 	text-align: center;
 }
 #contentBody {
-	background-color: #333;
-	color: whitesmoke;
+	background-color: aliceblue;
+	color: DarkSlateGray;
 	text-align: center;
 	width: 98%;
 	height: auto;
 	margin: 1%;
 	border-radius: 4px;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
 #youTubeBox {
-	background-color: #555;
+	background-color: aliceblue;
 	width: 45%;
 	height: auto;
 	margin: 1%;
-	color: whitesmoke;
+	color: DarkSlateGray;
 	text-align: center;
 	border-radius: 4px;
 	float: left;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
 #googleMapsBox {
-	background-color: #555;
-	color: whitesmoke;
+	background-color: aliceblue;
 	text-align: center;
 	width: 45%;
-	height: auto;
+	height: 300px;
 	margin: 1%;
 	border-radius: 4px;
 	float: right;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+}
+.footer {
+	background: linear-gradient(to bottom, #72CFEC, #2A5BBC);
+	border-top: 3px solid MediumSpringGreen;
+	padding: 0.3%;
+	text-align: center;
 }
