@@ -1,5 +1,5 @@
 header {
-	background-color: #333;
+	background-color: #2B65EC;
 	margin: 0;
 	color: whitesmoke;
 	background: linear-gradient(to bottom, #333, #111);
@@ -7,7 +7,7 @@ header {
 	text-align: center;
 }
 h1 {
-	font-size: 20px;
+	font-size: 50px;
 	margin: 0;
 }
 .jumbotron {
