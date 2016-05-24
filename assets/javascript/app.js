@@ -4,17 +4,24 @@ function initMap(){
 
 	var map = new google.maps.Map(mapDiv, {
 
-		center: {lat: 44.540, lng: -78.546},
-		zoom: 8
+		center: {lat: 27.6648, lng: -81.5158},
+		zoom: 7
 	});
+
+	/*var pointer = new google.maps.Marker({
+		position: {lat: 28.7450, lng: -81.3080},
+		map: map,
+		title: "Wherever"
+	});*/
 }
 
 var userInput;
 var href;
 var videoid;
-var fireUrl = "https://sound-splash.firebaseio.com/searches";
-var dataBaseRef = new Firebase(fireUrl);
-var recentSearch = [];
+var youtubeSearch;
+var eventsAPI = "https://api.bandsintown.com/artists/";
+var events = [];
+
 //var youtubeSearch = "https://www.youtube.com/playlist?list=PLnhejVhDwjcwjYUVMG1KTL3Oc7rB80H38"; //url for playlists
 
 //var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q="+ userInput + "&type=video&videoCaption=closedCaption&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for playlists
@@ -28,16 +35,6 @@ $('#searchButton').on('click', function(){
 
 	userInput = $('#search').val().trim();
 
-// button validation >> makes certain that the user cannot make two of the same button.=======================
-for(var i = 0; i < recentSearch.length; i++){
-
-	if(userInput.toUpperCase() == recentSearch[i].toUpperCase()){
-		$('#search').val('');
-		return false;
-	}
-	
-}
-// ^^button validation =============================================^^
 	console.log(youtubeSearch);
 
 	if(userInput == ""){
@@ -46,7 +43,12 @@ for(var i = 0; i < recentSearch.length; i++){
 
 	} else {
 
-		var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
+		//var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&videoEmbeddable=true&videoSyndicated=true&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video when embedding
+
+		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
+		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
+		console.log(eventsAPI);
+
 
 		$.ajax({
 			url: youtubeSearch,
@@ -56,7 +58,9 @@ for(var i = 0; i < recentSearch.length; i++){
 
 			console.log(response);
 
-			console.log(response.items[0].id.videoId);
+			videoid = response.items[0].id.videoId;
+
+			//$('#youPlayer').attr('src', 'http://www.youtube.com/embed/' +videoid + '?enablejsapi=1');
 
 			videoid = response.items[0].id.videoId;
 
@@ -77,10 +81,44 @@ for(var i = 0; i < recentSearch.length; i++){
 				});
 			// firebase ^^^^^
 
+		$.ajax({ //bandsintown api
+			url: eventsAPI,
+			method: 'GET',
+			dataType: 'jsonp'
+
+		}).done(function(retrieved){
+
+			console.log(retrieved);
+
+			var eventLon;
+			var eventLat;
+
+			var map = new google.maps.Map(document.getElementById('googleMapsBox'),{
+
+				center: {lat: retrieved[0].venue.latitude, lng: retrieved[0].venue.longitude},
+				zoom: 4
+			});
+
+			for(var i=0; i < retrieved.length; i++){
+
+				eventLon = retrieved[i].venue.longitude;
+				eventLat = retrieved[i].venue.latitude;
+
+				event = {eventLat, eventLon};
+
+				events.push(event);
+
+
+				var pointer = new google.maps.Marker({
+					position: {lat: eventLat, lng: eventLon},
+					map: map,
+					title: retrieved[i].venue.name
+				});
+
+			}
+			console.log(events);
 
 		});
-
-
 
 	}
 		// clears search input for next input
@@ -129,11 +167,6 @@ dataBaseRef.limitToLast(5).on('child_added', function(dataSnap){
 });
 
 
-// function that generates 5 buttons on page load
-// function that appends new search button and deletes first button dynamically on user search.
-// function that validates user search so they cant search something that has been already searched.
-// make database info an array so i can refer to each search with an index #. 
-// Will 'set' the new searches and delete the current searches, so we always have five searches.
 
 
 
