@@ -90,27 +90,85 @@ $('#searchButton').on('click', function(){
 				zoom: 4
 			});
 
+
+
 			for(var i=0; i < retrieved.length; i++){
 
 				eventLon = retrieved[i].venue.longitude;
 				eventLat = retrieved[i].venue.latitude;
 
-				event = {eventLat, eventLon};
+				var content = "<h5>" + retrieved[i].venue.name + "</h5><p class=\"mapText\">" + retrieved[i].venue.city + ", " + retrieved[i].venue.region + "</p>";
 
-				events.push(event);
-
-
-				var pointer = new google.maps.Marker({
+				/*var pointer = new google.maps.Marker({
 					position: {lat: eventLat, lng: eventLon},
 					map: map,
 					title: retrieved[i].venue.name
-				});
+				});*/
+
+				/*var eventInfo = new google.maps.InfoWindow({
+
+					content: content
+				});*/
+
+				addMarker(retrieved[i]);
+
+				/*google.maps.event.addListener(pointer, 'mouseover', function(){
+
+					eventInfo.open(pointer.get('map'), pointer);
+					map.setZoom(8);
+					map.setCenter(pointer.getPosition());
+
+				});*/
 
 			}
-			console.log(events);
+
+			function addMarker(mark){
+
+				var opened = false;
+
+				var pointer = new google.maps.Marker({
+					//position: {lat: eventLat, lng: eventLon},
+					position: {lat: mark.venue.latitude, lng: mark.venue.longitude},
+					map: map,
+					title: mark.venue.name
+					//title: retrieved[i].venue.name
+				});
+
+				var eventInfo = new google.maps.InfoWindow({
+
+					content: content
+				});
+
+				google.maps.event.addListener(pointer, 'mouseover', function(){
+
+					eventInfo.open(pointer.get('map'), pointer);
+					map.setZoom(8);
+					map.setCenter(pointer.getPosition());
+
+					opened = true;
+
+				});
+
+				/*if(opened == true && ){
+
+					google.maps.event.addListener(pointer, 'mouseover', function(){
+
+						eventInfo.close(pointer.get('map'), pointer);
+						map.setZoom(4);
+						map.setCenter(pointer.getPosition());
+
+						opened = false;
+
+					});
+
+				}*/
+
+			}
+			//console.log(events);
 
 		});
 
 	}
 
 });
+
