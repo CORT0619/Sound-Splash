@@ -78,9 +78,17 @@ header {
 	border-radius: 4px;
 	float: right;
 }
+h5 {
+	color: #000;
+	margin-bottom: 5px;
+}
+.mapText{
+	color: #000;
+}
 .footer {
 	background: linear-gradient(to bottom, #72CFEC, #2A5BBC);
 	border-top: 3px solid MediumSpringGreen;
 	padding: 1%;
 	text-align: center;
 }
+
