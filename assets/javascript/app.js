@@ -46,8 +46,6 @@ $('#searchButton').on('click', function(){
 
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
-		console.log(eventsAPI);
-
 
 		$.ajax({
 			url: youtubeSearch,
@@ -99,39 +97,16 @@ $('#searchButton').on('click', function(){
 
 				var content = "<h5>" + retrieved[i].venue.name + "</h5><p class=\"mapText\">" + retrieved[i].venue.city + ", " + retrieved[i].venue.region + "</p>";
 
-				/*var pointer = new google.maps.Marker({
-					position: {lat: eventLat, lng: eventLon},
-					map: map,
-					title: retrieved[i].venue.name
-				});*/
-
-				/*var eventInfo = new google.maps.InfoWindow({
-
-					content: content
-				});*/
-
 				addMarker(retrieved[i]);
-
-				/*google.maps.event.addListener(pointer, 'mouseover', function(){
-
-					eventInfo.open(pointer.get('map'), pointer);
-					map.setZoom(8);
-					map.setCenter(pointer.getPosition());
-
-				});*/
 
 			}
 
 			function addMarker(mark){
 
-				var opened = false;
-
 				var pointer = new google.maps.Marker({
-					//position: {lat: eventLat, lng: eventLon},
 					position: {lat: mark.venue.latitude, lng: mark.venue.longitude},
 					map: map,
 					title: mark.venue.name
-					//title: retrieved[i].venue.name
 				});
 
 				var eventInfo = new google.maps.InfoWindow({
@@ -142,29 +117,15 @@ $('#searchButton').on('click', function(){
 				google.maps.event.addListener(pointer, 'mouseover', function(){
 
 					eventInfo.open(pointer.get('map'), pointer);
-					map.setZoom(8);
-					map.setCenter(pointer.getPosition());
-
-					opened = true;
 
 				});
 
-				/*if(opened == true && ){
+				google.maps.event.addListener(pointer, 'mouseout', function(){
 
-					google.maps.event.addListener(pointer, 'mouseover', function(){
-
-						eventInfo.close(pointer.get('map'), pointer);
-						map.setZoom(4);
-						map.setCenter(pointer.getPosition());
-
-						opened = false;
-
-					});
-
-				}*/
+					eventInfo.close(pointer.get('map', pointer));
+				});
 
 			}
-			//console.log(events);
 
 		});
 
