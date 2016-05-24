@@ -6,23 +6,30 @@
 	font-family: Helvetica;
     src: url('../fonts/Helvetica.otf');
 }
+html, body {
+	height: 100%;
+}
 body {
 	background-image: url('../images/light_gray_pattern_bkgd.jpg');
+	font-family: 'Helvetica';
 }
 header {
 	background-color: #333;
 	margin: 0;
-	padding: 1%;
-	font-family: 'Texta-Black';
+	padding: 0.5%;
 	text-align: center;
 	color: whitesmoke;
 	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
-	border-bottom: 3px solid aquamarine;
+	border-bottom: 3px solid MediumSpringGreen;
 }
-h1 {
+.masthead {
 	font-size: 30px;
-	margin: 0;
+	font-family: 'Texta-Black';
+}
+.ssLogo {
+	max-width: 100px;
+	max-height: 100px;
 }
 .jumbotron {
 	margin: 1%;
@@ -31,9 +38,11 @@ h1 {
 }
 #searchButton {
 	margin: 1%;
+	padding-left: 2%;
+	padding-right: 2%;
 	color: whitesmoke;
 	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
-	border: 3px solid aquamarine;
+	border: 3px solid MediumSpringGreen;
 }
 #infoCols {
 	align-content: center;
@@ -76,3 +85,10 @@ h5 {
 .mapText{
 	color: #000;
 }
+.footer {
+	background: linear-gradient(to bottom, #72CFEC, #2A5BBC);
+	border-top: 3px solid MediumSpringGreen;
+	padding: 1%;
+	text-align: center;
+}
+
