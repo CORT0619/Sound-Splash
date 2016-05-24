@@ -34,8 +34,6 @@ $('#searchButton').on('click', function(){
 
 	userInput = $('#search').val().trim();
 
-	console.log(youtubeSearch);
-
 	if(userInput == ""){
 
 		// display some sort of dialog box telling the user to input something in the field
@@ -44,16 +42,17 @@ $('#searchButton').on('click', function(){
 
 		//var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&videoEmbeddable=true&videoSyndicated=true&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video when embedding
 
+		//youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=Kierra+Sheard&type=playlist&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for playlist
+
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
+
 
 		$.ajax({
 			url: youtubeSearch,
 			method: 'GET'
 
 		}).done(function(response){
-
-			console.log(response);
 
 			videoid = response.items[0].id.videoId;
 
@@ -96,6 +95,8 @@ $('#searchButton').on('click', function(){
 				eventLat = retrieved[i].venue.latitude;
 
 				var content = "<h5>" + retrieved[i].venue.name + "</h5><p class=\"mapText\">" + retrieved[i].venue.city + ", " + retrieved[i].venue.region + "</p>";
+
+				content+= "<p class=\"mapText\">"+ retrieved[i].formatted_datetime +"</p>";
 
 				addMarker(retrieved[i]);
 
