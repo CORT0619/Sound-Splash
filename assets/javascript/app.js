@@ -21,7 +21,6 @@ var videoid;
 var youtubeSearch;
 var eventsAPI = "https://api.bandsintown.com/artists/";
 var events = [];
-
 //var youtubeSearch = "https://www.youtube.com/playlist?list=PLnhejVhDwjcwjYUVMG1KTL3Oc7rB80H38"; //url for playlists
 
 //var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q="+ userInput + "&type=video&videoCaption=closedCaption&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for playlists
@@ -38,7 +37,7 @@ $('#searchButton').on('click', function(){
 	console.log(youtubeSearch);
 
 	if(userInput == ""){
-		$('#search').val('');
+
 		// display some sort of dialog box telling the user to input something in the field
 
 	} else {
@@ -47,8 +46,6 @@ $('#searchButton').on('click', function(){
 
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
-		console.log(eventsAPI);
-
 
 		$.ajax({
 			url: youtubeSearch,
@@ -68,18 +65,10 @@ $('#searchButton').on('click', function(){
 
 			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/placeholder.png\">"));
 
-			// you probably want to change this to html instead of append so if the user searches multiple times, it wont populate the div with every video.
 			$('#youTubeBox').html(newA);
 
 
-
-			// firebase 
-				dataBaseRef.push({
-					
-					name: userInput,
-
-				});
-			// firebase ^^^^^
+		});
 
 		$.ajax({ //bandsintown api
 			url: eventsAPI,
@@ -99,86 +88,47 @@ $('#searchButton').on('click', function(){
 				zoom: 4
 			});
 
+
+
 			for(var i=0; i < retrieved.length; i++){
 
 				eventLon = retrieved[i].venue.longitude;
 				eventLat = retrieved[i].venue.latitude;
 
-				event = {eventLat, eventLon};
+				var content = "<h5>" + retrieved[i].venue.name + "</h5><p class=\"mapText\">" + retrieved[i].venue.city + ", " + retrieved[i].venue.region + "</p>";
 
-				events.push(event);
+				addMarker(retrieved[i]);
 
+			}
+
+			function addMarker(mark){
 
 				var pointer = new google.maps.Marker({
-					position: {lat: eventLat, lng: eventLon},
+					position: {lat: mark.venue.latitude, lng: mark.venue.longitude},
 					map: map,
-					title: retrieved[i].venue.name
+					title: mark.venue.name
+				});
+
+				var eventInfo = new google.maps.InfoWindow({
+
+					content: content
+				});
+
+				google.maps.event.addListener(pointer, 'mouseover', function(){
+
+					eventInfo.open(pointer.get('map'), pointer);
+
+				});
+
+				google.maps.event.addListener(pointer, 'mouseout', function(){
+
+					eventInfo.close(pointer.get('map', pointer));
 				});
 
 			}
-			console.log(events);
 
 		});
 
 	}
-		// clears search input for next input
-		$('#search').val('');
-		// return false, so the page doesnt refresh everytime the submit button is clicked
-		return false;
+
 });
-
-
-var mostRecentSearch = function(){
-	// generates 5 buttons.
-	var arrayIndex = recentSearch.length - 1;
-
-	$('#contentBody').empty(); // << so it will always be 5 buttons.
-
-	for(var i = 0; i < 5; i++){
-
-		var daButton = $('<button>');
-		daButton.addClass('btn btn-default'); // class subject to change.
-		daButton.attr('data-index', recentSearch[arrayIndex]);
-		daButton.html(recentSearch[arrayIndex]);
-		$('#contentBody').append(daButton);
-		arrayIndex--;
-
-	}
-};
-
-var dynamicSeach = function(){
-
-};
-
-
-
-// executes code when data base is populated with new data or when page is loaded
-// takes the 5 most recent searches (subject to change)
-dataBaseRef.limitToLast(5).on('child_added', function(dataSnap){
-	// stores the object into a variable.
-	var searchName = dataSnap.val();
-	console.log(searchName.name);
-	recentSearch.push(searchName.name);
-
-	if(recentSearch.length >= 5){
-		mostRecentSearch();
-		
-	}
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
