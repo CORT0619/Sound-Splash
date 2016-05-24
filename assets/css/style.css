@@ -69,3 +69,10 @@ h1 {
 	border-radius: 4px;
 	float: right;
 }
+h5 {
+	color: #000;
+	margin-bottom: 5px;
+}
+.mapText{
+	color: #000;
+}
