@@ -28,10 +28,20 @@ $('#searchButton').on('click', function(){
 
 	userInput = $('#search').val().trim();
 
+// button validation >> makes certain that the user cannot make two of the same button.=======================
+for(var i = 0; i < recentSearch.length; i++){
+
+	if(userInput.toUpperCase() == recentSearch[i].toUpperCase()){
+		$('#search').val('');
+		return false;
+	}
+	
+}
+// ^^button validation =============================================^^
 	console.log(youtubeSearch);
 
 	if(userInput == ""){
-
+		$('#search').val('');
 		// display some sort of dialog box telling the user to input something in the field
 
 	} else {
