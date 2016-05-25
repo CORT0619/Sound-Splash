@@ -1,3 +1,7 @@
+$(document).ready(function(){
+
+
+
 function initMap(){
 
 	var mapDiv = document.getElementById('googleMapsBox');
@@ -31,7 +35,7 @@ var fireUrl = "https://sound-splash.firebaseio.com/searches";
 var dataBaseRef = new Firebase(fireUrl);
 var recentSearch = [];
 
-
+var wikiApi;
 
 $('#searchButton').on('click', function(){
 
@@ -64,6 +68,9 @@ $('#searchButton').on('click', function(){
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
 
+		console.log(eventsAPI);
+
+         wikiApi = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + userInput;
 
 		$.ajax({
 			url: youtubeSearch,
@@ -79,7 +86,7 @@ $('#searchButton').on('click', function(){
 
 			href = "https://www.youtube.com/watch?v=" + videoid;
 
-			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/placeholder.png\">"));
+			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/youtubegrey2.png\">"));
 
 			$('#youTubeBox').html(newA);
 
@@ -94,6 +101,9 @@ $('#searchButton').on('click', function(){
 		}).done(function(retrieved){
 
 			console.log(retrieved);
+
+			var artistImg = $('<img>').attr('src', retrieved[0].artists[0].thumb_url);
+			$('#artistPic').html(artistImg);
 
 			var eventLon;
 			var eventLat;
@@ -147,6 +157,17 @@ $('#searchButton').on('click', function(){
 
 		});
 
+		$.ajax({
+			url: wikiApi,
+			method: 'GET',
+			dataType: 'jsonp'
+
+		}).done(function(response){
+
+			console.log("wikipedia info" + response);
+
+		});
+
 					// firebase 
 				dataBaseRef.push({
 					
@@ -174,7 +195,7 @@ var mostRecentSearch = function(){
 	for(var i = 0; i < 5; i++){
 
 		var daButton = $('<button>');
-		daButton.addClass('btn btn-default'); // class subject to change.
+		daButton.addClass('btn btn-default recentButton'); // class subject to change.
 		daButton.attr('data-index', recentSearch[arrayIndex]);
 		daButton.html(recentSearch[arrayIndex]);
 		$('#contentBody').append(daButton);
@@ -197,6 +218,7 @@ dataBaseRef.limitToLast(5).on('child_added', function(dataSnap){
 	}
 });
 
+});
 
 
 
