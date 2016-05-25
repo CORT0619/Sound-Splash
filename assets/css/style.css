@@ -53,6 +53,9 @@ h1 {
 	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
 	border: 3px solid MediumSpringGreen;
 }
+#searchButton:hover {
+	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
+}
 #infoCols {
 	align-content: center;
 	margin: 0 auto;
@@ -70,7 +73,6 @@ h1 {
 }
 #youTubeBox {
 	background-color: aliceblue;
-	width: 45%;
 	height: auto;
 	margin: 1%;
 	color: DarkSlateGray;
@@ -78,6 +80,8 @@ h1 {
 	border-radius: 4px;
 	float: left;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	padding-left: 0;
+	padding-right: 0;
 }
 #googleMapsBox {
 	background-color: aliceblue;
@@ -89,17 +93,9 @@ h1 {
 	float: right;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
-h5 {
-	color: #000;
-	margin-bottom: 5px;
-}
-.mapText{
-	color: #000;
-}
 .footer {
 	background: linear-gradient(to bottom, #72CFEC, #2A5BBC);
 	border-top: 3px solid MediumSpringGreen;
 	padding: 0.3%;
 	text-align: center;
 }
-
