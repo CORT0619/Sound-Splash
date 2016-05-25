@@ -56,9 +56,10 @@ h3 {
 	background-color: aliceblue;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
-/*.jumboPattern {
-	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPklEQVQYV2NkQAOvX7+WFBUVfY4uzogsAFOETTFcIbokOh+sEJd1yOKMuBTBnASTR3EjugeQFROlEKSBaIUAh7Um4w91sOUAAAAASUVORK5CYII=);
-}*/
+.pattern {
+	background-image: url('../images/scanline_pattern.png');
+	opacity: 1;
+}
 #searchButton {
 	margin: 1%;
 	padding-left: 2%;
