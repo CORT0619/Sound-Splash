@@ -55,7 +55,11 @@ $('#searchButton').on('click', function(){
 	
 	}
 // ^^button validation =============================================^^
-
+	var str = userInput;
+	str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+	return letter.toUpperCase();
+	});
+	alert(str); //Displays "Bobby Brown"
 
 
 	if(userInput == ""){
