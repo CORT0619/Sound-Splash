@@ -31,6 +31,7 @@ var fireUrl = "https://sound-splash.firebaseio.com/searches";
 var dataBaseRef = new Firebase(fireUrl);
 var recentSearch = [];
 
+var wikiApi;
 
 
 $('#searchButton').on('click', function(){
@@ -63,7 +64,7 @@ $('#searchButton').on('click', function(){
 
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
-
+         wikiApi = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + userInput;
 
 		$.ajax({
 			url: youtubeSearch,
@@ -144,6 +145,17 @@ $('#searchButton').on('click', function(){
 				});
 
 			}
+
+		});
+
+		$.ajax({
+			url: wikiApi,
+			method: 'GET',
+			dataType: 'jsonp'
+
+		}).done(function(response){
+
+			console.log("wikipedia info" + response);
 
 		});
 
