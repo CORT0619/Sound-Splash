@@ -86,7 +86,7 @@ $('#searchButton').on('click', function(){
 
 			href = "https://www.youtube.com/watch?v=" + videoid;
 
-			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/youtubegrey2.png\">"));
+			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/youtubegrey1a.png\">"));
 
 			$('#youTubeBox').html(newA);
 
