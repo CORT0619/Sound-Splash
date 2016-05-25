@@ -11,19 +11,22 @@ function initMap(){
 		center: {lat: 27.6648, lng: -81.5158},
 		zoom: 7
 	});
+}
 
-	/*var pointer = new google.maps.Marker({
-		position: {lat: 28.7450, lng: -81.3080},
-		map: map,
-		title: "Wherever"
-	});*/
+function showNoArtistDiag(){
+
+	$('#errNoArtist').dialog({
+		buttons: {'OK': function(){$(this).dialog('close');}},
+		resizeable: false,
+		modal: true,
+		draggable: false
+	});
 }
 
 var userInput;
 var href;
 var videoid;
 var youtubeSearch;
-var eventsAPI = "https://api.bandsintown.com/artists/";
 var events = [];
 //var youtubeSearch = "https://www.youtube.com/playlist?list=PLnhejVhDwjcwjYUVMG1KTL3Oc7rB80H38"; //url for playlists
 
@@ -66,7 +69,7 @@ $('#searchButton').on('click', function(){
 		//youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=Kierra+Sheard&type=playlist&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for playlist
 
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
-		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
+		var eventsAPI = "https://api.bandsintown.com/artists/" + userInput + "/events.json?api_version=2.0&app_id=sound_splash";
 
 		console.log(eventsAPI);
 
@@ -101,6 +104,18 @@ $('#searchButton').on('click', function(){
 		}).done(function(retrieved){
 
 			console.log(retrieved);
+
+			if(retrieved == null || retrieved == ""){
+
+				showNoArtistDiag();
+
+			} else {
+
+				$('#main').hide();
+				$('#pg2').show();
+
+
+			}
 
 			var artistImg = $('<img>').attr('src', retrieved[0].artists[0].thumb_url);
 			$('#artistPic').html(artistImg);

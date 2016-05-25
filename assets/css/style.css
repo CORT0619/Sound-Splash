@@ -140,3 +140,8 @@ h3 {
 	height: 100px;
 	width: 100%;
 }
+.errorDiags {
+	display: none;
+}
+
+#pg2 {display: none;}
