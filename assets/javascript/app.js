@@ -35,6 +35,7 @@ var fireUrl = "https://sound-splash.firebaseio.com/searches";
 var dataBaseRef = new Firebase(fireUrl);
 var recentSearch = [];
 
+var wikiApi;
 
 $('#searchButton').on('click', function(){
 
@@ -69,6 +70,7 @@ $('#searchButton').on('click', function(){
 
 		console.log(eventsAPI);
 
+         wikiApi = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + userInput;
 
 		$.ajax({
 			url: youtubeSearch,
@@ -152,6 +154,17 @@ $('#searchButton').on('click', function(){
 				});
 
 			}
+
+		});
+
+		$.ajax({
+			url: wikiApi,
+			method: 'GET',
+			dataType: 'jsonp'
+
+		}).done(function(response){
+
+			console.log("wikipedia info" + response);
 
 		});
 
