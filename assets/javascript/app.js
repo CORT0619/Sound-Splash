@@ -27,6 +27,9 @@ var events = [];
 
 //var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 
+var fireUrl = "https://sound-splash.firebaseio.com/searches";
+var dataBaseRef = new Firebase(fireUrl);
+var recentSearch = [];
 
 
 
@@ -34,8 +37,22 @@ $('#searchButton').on('click', function(){
 
 	userInput = $('#search').val().trim();
 
-	if(userInput == ""){
 
+// button validation >> makes certain that the user cannot make two of the same button.=======================
+	for(var i = 0; i < recentSearch.length; i++){
+
+	if(userInput.toUpperCase() == recentSearch[i].toUpperCase()){
+		$('#search').val('');
+		return false;
+	}
+	
+	}
+// ^^button validation =============================================^^
+
+
+
+	if(userInput == ""){
+		$('#search').val('');
 		// display some sort of dialog box telling the user to input something in the field
 
 	} else {
@@ -130,6 +147,67 @@ $('#searchButton').on('click', function(){
 
 		});
 
-	}
+					// firebase 
+				dataBaseRef.push({
+					
+					name: userInput,
 
+				});
+			// firebase ^^^^^
+
+
+	}
+		// clears search input for next input
+		$('#search').val('');
+		// return false, so the page doesnt refresh everytime the submit button is clicked
+		return false;
 });
+
+
+
+var mostRecentSearch = function(){
+	// generates 5 buttons.
+	var arrayIndex = recentSearch.length - 1;
+
+	$('#contentBody').empty(); // << so it will always be 5 buttons.
+
+	for(var i = 0; i < 5; i++){
+
+		var daButton = $('<button>');
+		daButton.addClass('btn btn-default'); // class subject to change.
+		daButton.attr('data-index', recentSearch[arrayIndex]);
+		daButton.html(recentSearch[arrayIndex]);
+		$('#contentBody').append(daButton);
+		arrayIndex--;
+
+	}
+};
+
+// executes code when data base is populated with new data or when page is loaded
+// takes the 5 most recent searches (subject to change)
+dataBaseRef.limitToLast(5).on('child_added', function(dataSnap){
+	// stores the object into a variable.
+	var searchName = dataSnap.val();
+	console.log(searchName.name);
+	recentSearch.push(searchName.name);
+
+	if(recentSearch.length >= 5){
+		mostRecentSearch();
+		
+	}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
