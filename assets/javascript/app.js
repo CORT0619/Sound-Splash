@@ -174,7 +174,7 @@ var mostRecentSearch = function(){
 	for(var i = 0; i < 5; i++){
 
 		var daButton = $('<button>');
-		daButton.addClass('btn btn-default'); // class subject to change.
+		daButton.addClass('btn btn-default recentButton'); // class subject to change.
 		daButton.attr('data-index', recentSearch[arrayIndex]);
 		daButton.html(recentSearch[arrayIndex]);
 		$('#contentBody').append(daButton);
