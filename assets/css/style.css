@@ -74,15 +74,25 @@ h3 {
 	margin: 0 auto;
 	text-align: center;
 }
+#artistPic {
+	background-color: aliceblue;
+	height: auto;
+	border-radius: 4px;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	margin-left: 2.25%;
+	/*margin-right: 2%;*/
+	overflow: auto;
+	padding: 5px;
+	float: left;
+}
 #wikiBody {
 	background-color: aliceblue;
 	color: DarkSlateGray;
 	text-align: center;
-	width: 98%;
 	height: auto;
-	margin: 1%;
 	border-radius: 4px;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	float: right;
 }
 #contentBody {
 	background-color: aliceblue;

@@ -1,3 +1,7 @@
+$(document).ready(function(){
+
+
+
 function initMap(){
 
 	var mapDiv = document.getElementById('googleMapsBox');
@@ -32,7 +36,6 @@ var dataBaseRef = new Firebase(fireUrl);
 var recentSearch = [];
 
 
-
 $('#searchButton').on('click', function(){
 
 	userInput = $('#search').val().trim();
@@ -64,6 +67,8 @@ $('#searchButton').on('click', function(){
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
 
+		console.log(eventsAPI);
+
 
 		$.ajax({
 			url: youtubeSearch,
@@ -79,7 +84,7 @@ $('#searchButton').on('click', function(){
 
 			href = "https://www.youtube.com/watch?v=" + videoid;
 
-			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/placeholder.png\">"));
+			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/youtubegrey2.png\">"));
 
 			$('#youTubeBox').html(newA);
 
@@ -94,6 +99,9 @@ $('#searchButton').on('click', function(){
 		}).done(function(retrieved){
 
 			console.log(retrieved);
+
+			var artistImg = $('<img>').attr('src', retrieved[0].artists[0].thumb_url);
+			$('#artistPic').html(artistImg);
 
 			var eventLon;
 			var eventLat;
@@ -197,6 +205,7 @@ dataBaseRef.limitToLast(5).on('child_added', function(dataSnap){
 	}
 });
 
+});
 
 
 
