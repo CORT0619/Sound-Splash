@@ -24,6 +24,21 @@ header {
 }
 h1 {
 	margin-top: 0;
+  	text-shadow: 0 1px 0 #ccc,
+       0 2px 0 #c9c9c9,
+       0 3px 0 #bbb,
+       0 4px 0 #b9b9b9,
+       0 5px 0 #aaa,
+       0 6px 1px rgba(0,0,0,.1),
+       0 0 5px rgba(0,0,0,.1),
+       0 1px 3px rgba(0,0,0,.3),
+       0 3px 5px rgba(0,0,0,.2),
+       0 5px 10px rgba(0,0,0,.25),
+       0 10px 10px rgba(0,0,0,.2),
+       0 20px 20px rgba(0,0,0,.15);
+}
+h3 {
+	font-family: 'Helvetica';
 }
 .masthead {
 	font-size: 30px;
@@ -41,8 +56,9 @@ h1 {
 	background-color: aliceblue;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
-.jumboPattern {
-	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAP0lEQVQYV42Q0QoAIAgDz///aMPAKKeQb26HTg0tB6zKVUhI4Bus5tMn2K4Djh7gBGXM7Uvo5riQ/BfUNwwTWfn+CgiQkAMbAAAAAElFTkSuQmCC') repeat opacity 0.5%;
+.pattern {
+	background-image: url('../images/scanline_pattern.png');
+	opacity: 1;
 }
 #searchButton {
 	margin: 1%;
@@ -60,6 +76,16 @@ h1 {
 	align-content: center;
 	margin: 0 auto;
 	text-align: center;
+}
+#wikiBody {
+	background-color: aliceblue;
+	color: DarkSlateGray;
+	text-align: center;
+	width: 98%;
+	height: auto;
+	margin: 1%;
+	border-radius: 4px;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
 #contentBody {
 	background-color: aliceblue;
@@ -97,4 +123,8 @@ h1 {
 	border-top: 3px solid MediumSpringGreen;
 	padding: 0.3%;
 	text-align: center;
+}
+#push {
+	height: 100px;
+	width: 100%;
 }
