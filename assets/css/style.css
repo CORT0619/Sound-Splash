@@ -124,3 +124,7 @@ h3 {
 	padding: 0.3%;
 	text-align: center;
 }
+#push {
+	height: 100px;
+	width: 100%;
+}
