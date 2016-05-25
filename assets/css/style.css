@@ -37,6 +37,9 @@ h1 {
        0 10px 10px rgba(0,0,0,.2),
        0 20px 20px rgba(0,0,0,.15);
 }
+h3 {
+	font-family: 'Helvetica';
+}
 .masthead {
 	font-size: 30px;
 	font-family: 'Texta-Black';
@@ -72,6 +75,16 @@ h1 {
 	align-content: center;
 	margin: 0 auto;
 	text-align: center;
+}
+#wikiBody {
+	background-color: aliceblue;
+	color: DarkSlateGray;
+	text-align: center;
+	width: 98%;
+	height: auto;
+	margin: 1%;
+	border-radius: 4px;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
 #contentBody {
 	background-color: aliceblue;
