@@ -24,6 +24,21 @@ header {
 }
 h1 {
 	margin-top: 0;
+  	text-shadow: 0 1px 0 #ccc,
+       0 2px 0 #c9c9c9,
+       0 3px 0 #bbb,
+       0 4px 0 #b9b9b9,
+       0 5px 0 #aaa,
+       0 6px 1px rgba(0,0,0,.1),
+       0 0 5px rgba(0,0,0,.1),
+       0 1px 3px rgba(0,0,0,.3),
+       0 3px 5px rgba(0,0,0,.2),
+       0 5px 10px rgba(0,0,0,.25),
+       0 10px 10px rgba(0,0,0,.2),
+       0 20px 20px rgba(0,0,0,.15);
+}
+h3 {
+	font-family: 'Helvetica';
 }
 .masthead {
 	font-size: 30px;
@@ -39,10 +54,8 @@ h1 {
 	font-family: 'Helvetica';
 	color: DarkSlateGray;
 	background-color: aliceblue;
+	background-image: url('../images/scanline_pattern.png');
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
-}
-.jumboPattern {
-	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAP0lEQVQYV42Q0QoAIAgDz///aMPAKKeQb26HTg0tB6zKVUhI4Bus5tMn2K4Djh7gBGXM7Uvo5riQ/BfUNwwTWfn+CgiQkAMbAAAAAElFTkSuQmCC') repeat opacity 0.5%;
 }
 #searchButton {
 	margin: 1%;
@@ -53,10 +66,33 @@ h1 {
 	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
 	border: 3px solid MediumSpringGreen;
 }
+#searchButton:hover {
+	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
+}
 #infoCols {
 	align-content: center;
 	margin: 0 auto;
 	text-align: center;
+}
+#artistPic {
+	background-color: aliceblue;
+	height: auto;
+	border-radius: 4px;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	margin-left: 2.25%;
+	/*margin-right: 2%;*/
+	overflow: auto;
+	padding: 5px;
+	float: left;
+}
+#wikiBody {
+	background-color: aliceblue;
+	color: DarkSlateGray;
+	text-align: center;
+	height: auto;
+	border-radius: 4px;
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	float: right;
 }
 #contentBody {
 	background-color: aliceblue;
@@ -70,7 +106,6 @@ h1 {
 }
 #youTubeBox {
 	background-color: aliceblue;
-	width: 45%;
 	height: auto;
 	margin: 1%;
 	color: DarkSlateGray;
@@ -78,6 +113,8 @@ h1 {
 	border-radius: 4px;
 	float: left;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	padding-left: 0;
+	padding-right: 0;
 }
 #googleMapsBox {
 	background-color: aliceblue;
@@ -89,17 +126,13 @@ h1 {
 	float: right;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
-h5 {
-	color: #000;
-	margin-bottom: 5px;
-}
-.mapText{
-	color: #000;
-}
 .footer {
 	background: linear-gradient(to bottom, #72CFEC, #2A5BBC);
 	border-top: 3px solid MediumSpringGreen;
 	padding: 0.3%;
 	text-align: center;
 }
-
+#push {
+	height: 100px;
+	width: 100%;
+}

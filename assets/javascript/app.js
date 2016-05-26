@@ -1,3 +1,7 @@
+$(document).ready(function(){
+
+
+
 function initMap(){
 
 	var mapDiv = document.getElementById('googleMapsBox');
@@ -27,15 +31,32 @@ var events = [];
 
 //var youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 
+var fireUrl = "https://sound-splash.firebaseio.com/searches";
+var dataBaseRef = new Firebase(fireUrl);
+var recentSearch = [];
 
-
+var wikiApi;
 
 $('#searchButton').on('click', function(){
 
 	userInput = $('#search').val().trim();
 
-	if(userInput == ""){
 
+// button validation >> makes certain that the user cannot make two of the same button.=======================
+	for(var i = 0; i < recentSearch.length; i++){
+
+	if(userInput.toUpperCase() == recentSearch[i].toUpperCase()){
+		$('#search').val('');
+		return false;
+	}
+	
+	}
+// ^^button validation =============================================^^
+
+
+
+	if(userInput == ""){
+		$('#search').val('');
 		// display some sort of dialog box telling the user to input something in the field
 
 	} else {
@@ -47,6 +68,9 @@ $('#searchButton').on('click', function(){
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
 
+		console.log(eventsAPI);
+
+         wikiApi = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + userInput;
 
 		$.ajax({
 			url: youtubeSearch,
@@ -62,7 +86,7 @@ $('#searchButton').on('click', function(){
 
 			href = "https://www.youtube.com/watch?v=" + videoid;
 
-			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/placeholder.png\">"));
+			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/youtubegrey2.png\">"));
 
 			$('#youTubeBox').html(newA);
 
@@ -77,6 +101,9 @@ $('#searchButton').on('click', function(){
 		}).done(function(retrieved){
 
 			console.log(retrieved);
+
+			var artistImg = $('<img>').attr('src', retrieved[0].artists[0].thumb_url);
+			$('#artistPic').html(artistImg);
 
 			var eventLon;
 			var eventLat;
@@ -130,7 +157,79 @@ $('#searchButton').on('click', function(){
 
 		});
 
+		$.ajax({
+			url: wikiApi,
+			method: 'GET',
+			dataType: 'jsonp'
+
+		}).done(function(response){
+
+			console.log("wikipedia info" + response);
+
+		});
+
+					// firebase 
+				dataBaseRef.push({
+					
+					name: userInput,
+
+				});
+			// firebase ^^^^^
+
+
 	}
+		// clears search input for next input
+		$('#search').val('');
+		// return false, so the page doesnt refresh everytime the submit button is clicked
+		return false;
+});
+
+
+
+var mostRecentSearch = function(){
+	// generates 5 buttons.
+	var arrayIndex = recentSearch.length - 1;
+
+	$('#contentBody').empty(); // << so it will always be 5 buttons.
+
+	for(var i = 0; i < 5; i++){
+
+		var daButton = $('<button>');
+		daButton.addClass('btn btn-default recentButton'); // class subject to change.
+		daButton.attr('data-index', recentSearch[arrayIndex]);
+		daButton.html(recentSearch[arrayIndex]);
+		$('#contentBody').append(daButton);
+		arrayIndex--;
+
+	}
+};
+
+// executes code when data base is populated with new data or when page is loaded
+// takes the 5 most recent searches (subject to change)
+dataBaseRef.limitToLast(5).on('child_added', function(dataSnap){
+	// stores the object into a variable.
+	var searchName = dataSnap.val();
+	console.log(searchName.name);
+	recentSearch.push(searchName.name);
+
+	if(recentSearch.length >= 5){
+		mostRecentSearch();
+		
+	}
+});
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
