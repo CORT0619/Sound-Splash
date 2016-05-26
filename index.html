@@ -43,17 +43,18 @@
 	<body>
 
 		<header>
-			<h1 class="masthead">soundsplash</h1>
+			<img class="ssLogo" src="assets/images/SoundSplash_alt.png">
 		</header>
-		<div class="container wrapper">
+		<div class="container">
 			<div id="infoCols" class="row">
+				<div class="contactBody"></div>
 				<div class="jumbotron">
 					<h1 class="animated infinite bounce">Search an Artist</h1>
-					<input type="text" id="search" name="Search">
+					<input type="text" id="search" name="Search" placeholder="Go for it!">
 					<br>
 					<button type="button" id="searchButton" class="btn btn-default">search</button>
 				</div>
-				<h3>Most Recent Searches:</h3>
+				<h3 id="mostRecent">Most Recent Searches:</h3>
 	  			<div id="contentBody" class="col-md-12">Content goes here!</div>
 	  			<div id="wikiBody" class="col-md-12">Content goes here!</div>
 	  			<div id="youTubeBox" class="col-md-6">Content goes here!</div>
@@ -68,7 +69,7 @@
 			<div id="push" class="col-md-12"></div>
 		</div>
 		<div class="footer navbar-fixed-bottom">
-			<img class="ssLogo" src="assets/images/SoundSplash_white.png">
+			<h1 class="masthead">soundsplash &copy;</h1>
 		</div>
 
 		<!-- External JavaScript file -->
