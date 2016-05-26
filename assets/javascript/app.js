@@ -37,8 +37,10 @@ var events = [];
 var fireUrl = "https://sound-splash.firebaseio.com/searches";
 var dataBaseRef = new Firebase(fireUrl);
 var recentSearch = [];
-
+var eventsAPI;
 var wikiApi;
+var wikiPageId;
+var pageId;
 
 $('#searchButton').on('click', function(){
 
@@ -73,10 +75,8 @@ $('#searchButton').on('click', function(){
 		//youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=Kierra+Sheard&type=playlist&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for playlist
 
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
-		var eventsAPI = "https://api.bandsintown.com/artists/" + userInput + "/events.json?api_version=2.0&app_id=sound_splash";
-
-		console.log(eventsAPI);
-
+		eventsAPI = "https://api.bandsintown.com/artists/" + userInput + "/events.json?api_version=2.0&app_id=sound_splash";
+		wikiPageId = "https://en.wikipedia.org/w/api.php?action=parse&format=json&title=" + userInput + "&text=title"
          wikiApi = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + userInput;
 
 		$.ajax({
@@ -182,15 +182,35 @@ $('#searchButton').on('click', function(){
 		});
 
 		$.ajax({
-			url: wikiApi,
-			method: 'GET',
-			dataType: 'jsonp'
+				url: wikiPageId,
+				method: 'GET',
+				dataType: 'jsonp'
 
-		}).done(function(response){
+		}).done(function(results){
 
-			console.log(response.extract);
+			console.log(results.parse.pageid);
+			pageId = JSON.stringify(results.parse.pageid);
+			console.log(pageId);
 
-		});
+				$.ajax({
+					url: wikiApi,
+					method: 'GET',
+					dataType: 'jsonp'
+
+				}).done(function(response){
+
+					console.log(response);
+					console.log(response.query.pages + "." + pageId.extract);
+					console.log(response.query.pages[45509598].extract);
+					//console.log(response.query.pages[610714]["extract"]);
+					console.log(response.query.pages[45509598][extract]);
+					console.log(response.query.pages[45509598][title]);
+					console.log(JSON.stringify(response.query.pages));
+
+				});
+
+		});		
+
 
 					// firebase 
 				dataBaseRef.push({
