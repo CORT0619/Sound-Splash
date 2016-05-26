@@ -93,7 +93,12 @@ $('#searchButton').on('click', function(){
 
 			href = "https://www.youtube.com/watch?v=" + videoid;
 
-			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/youtubegrey1a.png\">"));
+			var newA = $('<a>');
+			newA.attr({
+				'href': href,
+				'target': 'window'
+				});
+			newA.html($("<img src=\"assets/images/youtubegrey1a.png\">"));
 
 			$('#youTubeBox').html(newA);
 
@@ -183,7 +188,7 @@ $('#searchButton').on('click', function(){
 
 		}).done(function(response){
 
-			console.log("wikipedia info" + response);
+			console.log(response.extract);
 
 		});
 
@@ -268,8 +273,13 @@ $(document).on('click', '.recentButton', function(){
 			videoid = response.items[0].id.videoId;
 
 			href = "https://www.youtube.com/watch?v=" + videoid;
-
-			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/youtubegrey1a.png\">"));
+			
+			var newA = $('<a>');
+			newA.attr({
+				'href': href,
+				'target': 'window'
+				});
+			newA.html($("<img src=\"assets/images/youtubegrey1a.png\">"));
 
 			$('#youTubeBox').html(newA);
 
@@ -359,7 +369,7 @@ $(document).on('click', '.recentButton', function(){
 
 		}).done(function(response){
 
-			console.log("wikipedia info" + response);
+			console.log(response.extract);
 
 		});
 
