@@ -79,7 +79,7 @@ h3 {
 	height: auto;
 	border-radius: 4px;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
-	margin-left: 2.25%;
+	margin-left: 2.5%;
 	/*margin-right: 2%;*/
 	overflow: auto;
 	padding: 5px;
@@ -107,7 +107,7 @@ h3 {
 #youTubeBox {
 	background-color: aliceblue;
 	height: auto;
-	margin: 1%;
+	margin: 1% 1% 1% 2.5%;
 	color: DarkSlateGray;
 	text-align: center;
 	border-radius: 4px;
@@ -116,14 +116,18 @@ h3 {
 	padding-left: 0;
 	padding-right: 0;
 }
+#youTubeBox img {
+	border-radius: 4px;
+}
 #googleMapsBox {
 	background-color: aliceblue;
 	text-align: center;
 	width: 45%;
 	height: 300px;
 	margin: 1%;
+	margin-left: 4%;
 	border-radius: 4px;
-	float: right;
+	/*float: right;*/
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 }
 .footer {
@@ -136,3 +140,8 @@ h3 {
 	height: 100px;
 	width: 100%;
 }
+.errorDiags {
+	display: none;
+}
+
+#pg2 {display: none;}

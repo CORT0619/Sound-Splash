@@ -11,19 +11,22 @@ function initMap(){
 		center: {lat: 27.6648, lng: -81.5158},
 		zoom: 7
 	});
+}
 
-	/*var pointer = new google.maps.Marker({
-		position: {lat: 28.7450, lng: -81.3080},
-		map: map,
-		title: "Wherever"
-	});*/
+function showNoArtistDiag(){
+
+	$('#errNoArtist').dialog({
+		buttons: {'OK': function(){$(this).dialog('close');}},
+		resizeable: false,
+		modal: true,
+		draggable: false
+	});
 }
 
 var userInput;
 var href;
 var videoid;
 var youtubeSearch;
-var eventsAPI = "https://api.bandsintown.com/artists/";
 var events = [];
 //var youtubeSearch = "https://www.youtube.com/playlist?list=PLnhejVhDwjcwjYUVMG1KTL3Oc7rB80H38"; //url for playlists
 
@@ -52,8 +55,12 @@ $('#searchButton').on('click', function(){
 	
 	}
 // ^^button validation =============================================^^
-
-
+	var str = userInput;
+	str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+	return letter.toUpperCase();
+	});
+	// alert(str); //Displays "Bobby Brown"
+	userInput = str;
 
 	if(userInput == ""){
 		$('#search').val('');
@@ -66,7 +73,7 @@ $('#searchButton').on('click', function(){
 		//youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=Kierra+Sheard&type=playlist&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for playlist
 
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + userInput + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
-		eventsAPI += userInput + "/events.json?api_version=2.0&app_id=sound_splash";
+		var eventsAPI = "https://api.bandsintown.com/artists/" + userInput + "/events.json?api_version=2.0&app_id=sound_splash";
 
 		console.log(eventsAPI);
 
@@ -86,7 +93,12 @@ $('#searchButton').on('click', function(){
 
 			href = "https://www.youtube.com/watch?v=" + videoid;
 
-			var newA = $('<a>').attr('href', href).html($("<img src=\"assets/images/youtubegrey2.png\">"));
+			var newA = $('<a>');
+			newA.attr({
+				'href': href,
+				'target': 'window'
+				});
+			newA.html($("<img src=\"assets/images/youtubegrey1a.png\">"));
 
 			$('#youTubeBox').html(newA);
 
@@ -101,6 +113,18 @@ $('#searchButton').on('click', function(){
 		}).done(function(retrieved){
 
 			console.log(retrieved);
+
+			if(retrieved == null || retrieved == ""){
+
+				showNoArtistDiag();
+
+			} else {
+
+				$('#main').hide();
+				$('#pg2').show();
+
+
+			}
 
 			var artistImg = $('<img>').attr('src', retrieved[0].artists[0].thumb_url);
 			$('#artistPic').html(artistImg);
@@ -164,7 +188,7 @@ $('#searchButton').on('click', function(){
 
 		}).done(function(response){
 
-			console.log("wikipedia info" + response);
+			console.log(response.extract);
 
 		});
 
@@ -188,15 +212,20 @@ $('#searchButton').on('click', function(){
 
 var mostRecentSearch = function(){
 	// generates 5 buttons.
-	var arrayIndex = recentSearch.length - 1;
+	var arrayIndex = 4;
+
+	if(recentSearch.length > 5){
+		recentSearch.splice(0, 1);
+		console.log(recentSearch);
+	}
 
 	$('#contentBody').empty(); // << so it will always be 5 buttons.
 
-	for(var i = 0; i < 5; i++){
+	for(var i = 0; i < recentSearch.length; i++){
 
 		var daButton = $('<button>');
 		daButton.addClass('btn btn-default recentButton'); // class subject to change.
-		daButton.attr('data-index', recentSearch[arrayIndex]);
+		daButton.attr('data-name', recentSearch[arrayIndex]);
 		daButton.html(recentSearch[arrayIndex]);
 		$('#contentBody').append(daButton);
 		arrayIndex--;
@@ -209,7 +238,7 @@ var mostRecentSearch = function(){
 dataBaseRef.limitToLast(5).on('child_added', function(dataSnap){
 	// stores the object into a variable.
 	var searchName = dataSnap.val();
-	console.log(searchName.name);
+//	console.log(searchName.name);
 	recentSearch.push(searchName.name);
 
 	if(recentSearch.length >= 5){
@@ -220,7 +249,132 @@ dataBaseRef.limitToLast(5).on('child_added', function(dataSnap){
 
 });
 
+// everything below makes recent search buttons functional 
 
+$(document).on('click', '.recentButton', function(){
+
+	var buttonName = $(this).attr('data-name');
+	console.log(buttonName);
+
+		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + buttonName + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
+		var eventsAPI = "https://api.bandsintown.com/artists/" + buttonName + "/events.json?api_version=2.0&app_id=sound_splash";
+         wikiApi = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + buttonName;
+
+		$.ajax({
+			url: youtubeSearch,
+			method: 'GET'
+
+		}).done(function(response){
+
+			videoid = response.items[0].id.videoId;
+
+			//$('#youPlayer').attr('src', 'http://www.youtube.com/embed/' +videoid + '?enablejsapi=1');
+
+			videoid = response.items[0].id.videoId;
+
+			href = "https://www.youtube.com/watch?v=" + videoid;
+			
+			var newA = $('<a>');
+			newA.attr({
+				'href': href,
+				'target': 'window'
+				});
+			newA.html($("<img src=\"assets/images/youtubegrey1a.png\">"));
+
+			$('#youTubeBox').html(newA);
+
+
+		});
+
+		$.ajax({ //bandsintown api
+			url: eventsAPI,
+			method: 'GET',
+			dataType: 'jsonp'
+
+		}).done(function(retrieved){
+
+			console.log(retrieved);
+
+			if(retrieved == null || retrieved == ""){
+
+				showNoArtistDiag();
+
+			} else {
+
+				$('#main').hide();
+				$('#pg2').show();
+
+
+			}
+
+			var artistImg = $('<img>').attr('src', retrieved[0].artists[0].thumb_url);
+			$('#artistPic').html(artistImg);
+
+			var eventLon;
+			var eventLat;
+
+			var map = new google.maps.Map(document.getElementById('googleMapsBox'),{
+
+				center: {lat: retrieved[0].venue.latitude, lng: retrieved[0].venue.longitude},
+				zoom: 4
+			});
+
+
+
+			for(var i=0; i < retrieved.length; i++){
+
+				eventLon = retrieved[i].venue.longitude;
+				eventLat = retrieved[i].venue.latitude;
+
+				var content = "<h5>" + retrieved[i].venue.name + "</h5><p class=\"mapText\">" + retrieved[i].venue.city + ", " + retrieved[i].venue.region + "</p>";
+
+				content+= "<p class=\"mapText\">"+ retrieved[i].formatted_datetime +"</p>";
+
+				addMarker(retrieved[i]);
+
+			}
+
+			function addMarker(mark){
+
+				var pointer = new google.maps.Marker({
+					position: {lat: mark.venue.latitude, lng: mark.venue.longitude},
+					map: map,
+					title: mark.venue.name
+				});
+
+				var eventInfo = new google.maps.InfoWindow({
+
+					content: content
+				});
+
+				google.maps.event.addListener(pointer, 'mouseover', function(){
+
+					eventInfo.open(pointer.get('map'), pointer);
+
+				});
+
+				google.maps.event.addListener(pointer, 'mouseout', function(){
+
+					eventInfo.close(pointer.get('map', pointer));
+				});
+
+			}
+
+		});
+
+		$.ajax({
+			url: wikiApi,
+			method: 'GET',
+			dataType: 'jsonp'
+
+		}).done(function(response){
+
+			console.log(response.extract);
+
+		});
+
+
+});
 
 
 
