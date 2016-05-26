@@ -53,12 +53,15 @@ h3 {
 }
 .jumbotron {
 	margin: 1%;
-	margin-top: 15%;
+	margin-top: 13.5%;
 	font-family: 'Helvetica';
 	color: DarkSlateGray;
 	background-color: aliceblue;
 	background-image: url('../images/wave_pattern.png');
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	border-width: 3px;
+	border-style: solid;
+	border-image: linear-gradient(to bottom, #00fa9a, #00d382);
 }
 .recentButton {
 	margin: 1%;
@@ -75,6 +78,29 @@ h3 {
 #searchButton:hover {
 	background: linear-gradient(to bottom, #193976, #498598);
 }
+#contactBody {
+	float: left;
+	padding: 1%;
+	margin: 1%;
+	background-color: aliceblue;
+	color: DarkSlateGray;
+	text-align: center;
+	font-family: 'Helvetica';
+	border-radius: 4px;
+	background-image: url('../images/wave_pattern.png');
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	border: 2px solid MediumSpringGreen;
+}
+#contactUsText {
+	margin-top: 0;
+}
+#gitImg,
+#linkedImg,
+#stackImg {
+	max-width: 40px;
+	max-height: auto;
+	border: 3px solid whitesmoke;
+}
 #infoCols {
 	align-content: center;
 	margin: 0 auto;
@@ -90,6 +116,7 @@ h3 {
 	border-radius: 4px;
 	background-image: url('../images/wave_pattern.png');
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	border: 2px solid MediumSpringGreen;
 }
 #contentBody {
 	background-color: aliceblue;
@@ -101,6 +128,7 @@ h3 {
 	border-radius: 4px;
 	background-image: url('../images/wave_pattern.png');
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	border: 2px solid MediumSpringGreen;
 }
 #youTubeBox {
 	background-color: aliceblue;
@@ -113,6 +141,10 @@ h3 {
 	float: left;
 	background-image: url('../images/wave_pattern.png');
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	border: 2px solid MediumSpringGreen;
+}
+#blah {
+	margin: 1%;
 }
 #googleMapsBox {
 	background-color: aliceblue;
@@ -124,6 +156,7 @@ h3 {
 	float: right;
 	background-image: url('../images/wave_pattern.png');
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	border: 2px solid MediumSpringGreen;
 }
 .footer {
 	background: linear-gradient(to bottom, #72CFEC, #2A5BBC);
