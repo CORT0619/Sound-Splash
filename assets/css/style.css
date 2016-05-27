@@ -8,6 +8,7 @@
 }
 html, body {
 	height: 100%;
+	width: 100%;
 }
 body {
 	background-image: url('../images/light_gray_pattern_bkgd.jpg');
@@ -48,6 +49,9 @@ h3 {
 	max-width: 80px;
 	max-height: 80px;
 }
+#main{
+	text-align: center;	
+}
 .jumbotron {
 	margin: 1%;
 	margin-top: 3%;
@@ -72,7 +76,6 @@ h3 {
 #infoCols {
 	align-content: center;
 	margin: 0 auto;
-	text-align: center;
 }
 #artistPic {
 	background-color: aliceblue;
@@ -80,11 +83,10 @@ h3 {
 	border-radius: 4px;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 	margin-left: 2.5%;
-	/*margin-right: 2%;*/
 	overflow: auto;
-	padding: 5px;
+	padding: 5px 0 5px 5px;
 	float: left;
-	margin-top: 2%;
+	margin-top: 1%;
 }
 #wikiBody {
 	background-color: aliceblue;
@@ -94,7 +96,8 @@ h3 {
 	border-radius: 4px;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 	float: right;
-	margin-top: 2%;
+	margin-top: 1%;
+	margin-right: 8%;
 }
 #contentBody {
 	background-color: aliceblue;
@@ -118,25 +121,32 @@ h3 {
 	padding-left: 0;
 	padding-right: 0;
 }
+#bottomRow{
+	margin-top: 13px;
+}
 #youTubeBox img {
 	border-radius: 4px;
 }
 #googleMapsBox {
 	background-color: aliceblue;
 	text-align: center;
-	width: 45%;
+	/*width: 45%;*/
 	height: 300px;
 	margin: 1%;
 	margin-left: 4%;
 	border-radius: 4px;
-	/*float: right;*/
+	float: right;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	margin-right: 8%;
 }
 .footer {
 	background: linear-gradient(to bottom, #72CFEC, #2A5BBC);
 	border-top: 3px solid MediumSpringGreen;
 	padding: 0.3%;
 	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 #push {
 	height: 100px;
@@ -147,3 +157,23 @@ h3 {
 }
 
 #pg2 {display: none;}
+
+@media screen and (min-width: 1339px){
+
+#youTubeBox {
+	padding-top: 10px;
+	padding-bottom: 10px
+}
+
+}
+
+@media(min-width: 768px){
+#artistPic{
+	width: 27%;
+
+}
+#youTubeBox{
+	width: 23%;
+}
+}
+

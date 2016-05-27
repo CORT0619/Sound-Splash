@@ -303,7 +303,7 @@ $(document).on('click', '.recentButton', function(){
 				'href': href,
 				'target': 'window'
 				});
-			newA.html($("<img src=\"assets/images/youtubegrey1a.png\">"));
+			newA.html($("<img src=\"assets/images/youtubegrey1b.png\">"));
 
 			$('#youTubeBox').html(newA);
 
