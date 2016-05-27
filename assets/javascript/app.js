@@ -195,7 +195,7 @@ $('#searchButton').on('click', function(){
 					}
 
 				}
-				else if(retrieved < 10){
+				else if(retrieved.length < 10){
 
 					for(var i = 0; i < retrieved.length; i++){
 						var anchor = $('<a>');
@@ -402,7 +402,7 @@ $(document).on('click', '.recentButton', function(){
 					}
 
 				}
-				else if(retrieved < 10){
+				else if(retrieved.length < 10){
 
 					for(var i = 0; i < retrieved.length; i++){
 						var anchor = $('<a>');
