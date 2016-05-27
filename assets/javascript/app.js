@@ -179,37 +179,39 @@ $('#searchButton').on('click', function(){
 
 			}
 
-		});
+				if(retrieved.length > 10){
 
-		$.ajax({
-				url: wikiPageId,
-				method: 'GET',
-				dataType: 'jsonp'
+					for (var i = 0; i < 10; i++){
+						var anchor = $('<a>');
+						var para = $('<p>');
+						anchor.attr({
+							'href' : retrieved[i].ticket_url,
+							'target': 'window' 
+						});
+						para.addClass('ticketLinks')
+						anchor.html(retrieved[i].title);
+						para.html(anchor);
+						$(wikiBody).append(para);
+					}
 
-		}).done(function(results){
+				}
+				else if(retrieved < 10){
 
-			console.log(results.parse.pageid);
-			pageId = JSON.stringify(results.parse.pageid);
-			console.log(pageId);
+					for(var i = 0; i < retrieved.length; i++){
+						var anchor = $('<a>');
+						var para = $('<p>');
+						anchor.attr({
+							'href' : retrieved[i].ticket_url,
+							'target': 'window' 
+						});
+						para.addClass('ticketLinks')
+						anchor.html(retrieved[i].title);
+						para.html(anchor);
+						$(wikiBody).append(para);						
 
-				$.ajax({
-					url: wikiApi,
-					method: 'GET',
-					dataType: 'jsonp'
+					}
 
-				}).done(function(response){
-
-					console.log(response);
-					console.log(response.query.pages + "." + pageId.extract);
-					console.log(response.query.pages[45509598].extract);
-					//console.log(response.query.pages[610714]["extract"]);
-					console.log(response.query.pages[45509598][extract]);
-					console.log(response.query.pages[45509598][title]);
-					console.log(JSON.stringify(response.query.pages));
-
-				});
-
-		});		
+				}
 
 
 					// firebase 
@@ -278,7 +280,7 @@ $(document).on('click', '.recentButton', function(){
 
 		youtubeSearch = "https://www.googleapis.com/youtube/v3/search?part=snippet&kind=playlist&maxResults=1&q=" + buttonName + "&type=video&videoCaption=closedCaption&videoCategoryId=10&key=AIzaSyAzU3_r7MMhIb1Hrp6V79ilLOc9nASDhc0"; // youtube search for single video
 		var eventsAPI = "https://api.bandsintown.com/artists/" + buttonName + "/events.json?api_version=2.0&app_id=sound_splash";
-         wikiApi = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + buttonName;
+
 
 		$.ajax({
 			url: youtubeSearch,
@@ -326,6 +328,8 @@ $(document).on('click', '.recentButton', function(){
 
 
 			}
+
+
 
 			var artistImg = $('<img>').attr('src', retrieved[0].artists[0].thumb_url);
 			$('#artistPic').html(artistImg);
@@ -380,18 +384,42 @@ $(document).on('click', '.recentButton', function(){
 
 			}
 
+				if(retrieved.length > 10){
+
+					for (var i = 0; i < 10; i++){
+						var anchor = $('<a>');
+						var para = $('<p>');
+						anchor.attr({
+							'href' : retrieved[i].ticket_url,
+							'target': 'window' 
+						});
+						para.addClass('ticketLinks')
+						anchor.html(retrieved[i].title);
+						para.html(anchor);
+						$(wikiBody).append(para);
+					}
+
+				}
+				else if(retrieved < 10){
+
+					for(var i = 0; i < retrieved.length; i++){
+						var anchor = $('<a>');
+						var para = $('<p>');
+						anchor.attr({
+							'href' : retrieved[i].ticket_url,
+							'target': 'window' 
+						});
+						para.addClass('ticketLinks')
+						anchor.html(retrieved[i].title);
+						para.html(anchor);
+						$(wikiBody).append(para);						
+
+					}
+
+				}
+
 		});
 
-		$.ajax({
-			url: wikiApi,
-			method: 'GET',
-			dataType: 'jsonp'
-
-		}).done(function(response){
-
-			console.log(response.extract);
-
-		});
 
 
 });
