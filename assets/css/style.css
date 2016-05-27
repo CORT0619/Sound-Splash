@@ -17,9 +17,8 @@ header {
 	margin: 0;
 	padding: 0.5%;
 	text-align: center;
-
+	top: 0px;
 	color: whitesmoke;
-
 	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 	border-bottom: 3px solid MediumSpringGreen;
@@ -63,9 +62,8 @@ a:hover {
 }
 .jumbotron {
 	margin: 1%;
-
+	margin-top: 5%;
 	margin-top: 3%;
-
 	font-family: 'Helvetica';
 	color: #72CFEC;
 	background-color: aliceblue;
@@ -87,7 +85,23 @@ a:hover {
        0 10px 10px rgba(0,0,0,.2),
        0 20px 20px rgba(0,0,0,.15);
 }
-
+.recentButton {
+	margin: 1%;
+	color: whitesmoke;
+	font-style: italic;
+	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
+	border: 3px solid MediumSpringGreen;
+}
+.recentButton:hover {
+	color: whitesmoke;
+	background: linear-gradient(to bottom, #193976, #498598);
+	border-color: #72CFEC;
+}
+.recentButton:active {
+	color: whitemsmoke;
+	background: linear-gradient(to bottom, #193976, #498598);
+	border-color: DarkGray;
+}
 #searchButton {
 	margin: 1%;
 	padding-left: 2%;
@@ -98,7 +112,6 @@ a:hover {
 	border: 3px solid MediumSpringGreen;
 }
 #searchButton:hover {
-<<<<<<< HEAD
 	color: whitesmoke;
 	background: linear-gradient(to bottom, #193976, #498598);
 	border-color: #72CFEC;
@@ -132,7 +145,7 @@ a:hover {
 	max-width: 40px;
 	max-height: auto;
 	border: 3px solid whitesmoke;
-
+	background: linear-gradient(to bottom, #2A5BBC, #72CFEC);
 }
 #infoCols {
 	align-content: center;
@@ -157,11 +170,12 @@ a:hover {
 	text-align: center;
 	height: auto;
 	border-radius: 4px;
-
+	background-image: url('../images/scanline_pattern.png');
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	border: 2px solid MediumSpringGreen;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 	float: right;
 	margin-top: 2%;
-
 }
 #contentBody {
 	background-color: aliceblue;
@@ -171,7 +185,7 @@ a:hover {
 	height: auto;
 	margin: 1%;
 	border-radius: 4px;
-
+	background-image: url('../images/scanline_pattern.png');
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 	border: 2px solid MediumSpringGreen;
 }
@@ -183,14 +197,15 @@ a:hover {
 	text-align: center;
 	border-radius: 4px;
 	float: left;
-
+	background-image: url('../images/scanline_pattern.png');
+	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
+	border: 2px solid MediumSpringGreen;
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 	padding-left: 0;
 	padding-right: 0;
 }
 #youTubeBox img {
 	border-radius: 4px;
-
 }
 #googleMapsBox {
 	background-color: aliceblue;
@@ -200,9 +215,10 @@ a:hover {
 	margin: 1%;
 	margin-left: 4%;
 	border-radius: 4px;
+	float: right;
+	background-image: url('../images/scanline_pattern.png');
 
 	/*float: right;*/
-
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 	border: 2px solid MediumSpringGreen;
 }
@@ -220,4 +236,6 @@ a:hover {
 	display: none;
 }
 
-#pg2 {display: none;}
+#pg2 {
+	display: none;
+}
