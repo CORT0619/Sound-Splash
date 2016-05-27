@@ -90,6 +90,9 @@ h3 {
 	float: left;
 	margin-top: 1%;
 }
+#artistPic img{
+	width: 98%;
+}
 #wikiBody {
 	background-color: aliceblue;
 	color: DarkSlateGray;
@@ -122,6 +125,11 @@ h3 {
 	box-shadow: 0px 1px 10px 0px rgba(186,186,186,1);
 	padding-left: 0;
 	padding-right: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#youTubeBox img {
+	width: 90%;
 }
 #bottomRow{
 	margin-top: 13px;
@@ -160,19 +168,184 @@ h3 {
 #pg2 {
 	display: none;
 }
-@media screen and (min-width: 1339px){
+@media screen and (max-width: 811px){
+#artistPic{
+	margin: 5px auto;
+	float: none;
+	width: 40%;
+}
+#wikiBox{
+	margin: auto;
+}
+#youTubeBox{
+	float: none;
+	width: 40%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	margin: auto;
+	margin-bottom: 10px;
+}
+#googleMapsBox{
+	float: none;
+	margin-top: 10px;
+	margin: auto;
+}
+}
+/*@media screen and (min-width: 1339px){
 #youTubeBox {
 	padding-top: 10px;
 	padding-bottom: 10px
 }
 }
-@media(min-width: 768px){
+@media screen and (min-width: 768px){
 #artistPic{
-	width: 27%;
+	width: 26.5%;
 
 }
 #youTubeBox{
 	width: 23%;
 }
 }
+@media screen and (max-width: 1490px){
+#youTubeBox{
+	width: 22.5%;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+}
+/*@media screen and (min-width: 1489px){
+	#artistPic{
+		width: 22.5%;
+	}
+}*/
+/*@media screen and (max-width: 1338px){
+#youTubeBox{
+	width: 27%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#googleMapsBox{
+	margin-right: 5%;
+}
+#wikiBody{
+	margin-right: 5%;
+}
+#artistPic img{
+	max-width: 250px;
+	max-height: 300px;
+}
+}*/
+/*@media screen and (max-width: 1109px){
+#artistPic{
+	float: none;
+	margin: 5px auto;
+	width: 35%;
+}
+#artistPic img{
+	width: 95%;
+}
+#wikiBody{
+	float: none;
+	margin-right: 0;
+	width: 100%
+}
+#youTubeBox{
+	float: none;
+	margin: auto;
+	width: 35%;
+}
+#googleMapsBox{
+	width: 100%;
+	margin-right: 0;
+	margin-top: 20px;
+}
+}*/
+/*@media screen and (max-width: 1109px){
+#artistPic{
+	float: none;
+	margin: 5px auto;
+	width: 35%;
+}
+#artistPic img{
+	width: 95%;
+}
+#wikiBody{
+	float: none;
+	margin-right: 0;
+	width: 100%
+}
+#youTubeBox{
+	float: none;
+	margin: auto;
+	width: 35%;
+}
+#googleMapsBox{
+	width: 100%;
+	margin-right: 0;
+	margin-top: 20px;
+}
+}*/
+@media(min-width: 768px){
+#artistPic{
+	width: 24%;
+	margin-right:auto;
+}
+}
 
+@media only screen and (max-width: 900px) and (min-width: 725px){
+#artistPic{
+	width: 24%;
+}
+#artistPic img{
+	width: 95%;
+}
+}
+@media only screen and (max-width: 720px) and (min-width: 420px){
+#artistPic{
+	width: 50%;
+	margin: 5px auto;
+	float: none;
+}
+#artistPic img{
+	width: 98%;
+}
+#wikiBody{
+	float: none;
+	margin: 10px auto;
+	width: 80%;
+}
+#youTubeBox{
+	float: none;
+	margin: 10px auto;
+	width: 42%;
+}
+#googleMapsBox{
+	float: none;
+	width: 80%;
+	margin: 10px auto;
+}
+}
+@media screen and (max-width: 415px){
+#youTubeBox{
+	width: 80%;
+	margin: auto;
+}
+#artistPic{
+	width: 90%;
+	overflow: visible;
+	margin-bottom: 10px;
+}
+#artistPic img{
+	width: 98%;
+}
+#wikiBody{
+	margin-right: 0;
+}
+#youTubeBox{
+	float: none;
+}
+#googleMapsBox{
+	float: none;
+	margin: 10px auto;
+}
+}
